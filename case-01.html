@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case 01</title>
+    <link rel="stylesheet" href="styles/normalize.css">
+    <style>
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: black;
+        }
+
+        section > div {
+            display: flex;
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+
+        }
+
+        section > div > div {
+            width: 150px;
+            height: 50px;
+            border: 1px solid white;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <div>
+        <div class="x"></div>
+        <div class="x"></div>
+        <div class="x"></div>
+        <div class="x"></div>
+        <div class="x"></div>
+        <div class="x"></div>
+        <div class="x"></div>
+    </div>
+
+</section>
+<script src="styles/jquery-3.7.1.min.js"></script>
+
+<script>
+    let box = $('.x');
+    let i = 0;
+    let direction = 1;
+
+    let colors = ['white', 'red', 'lightpink'];
+
+    function knightRider() {
+        box.css('background-color', colors[0]);
+        box.eq(i).css('background-color', colors[1]);
+        let prevIndex = i - direction;
+
+        if (prevIndex >= 0 && prevIndex < box.length) {
+            box.eq(prevIndex).css('background-color', colors[2]);
+        }
+
+        i += direction;
+
+        if (i >= box.length || i < 0) {
+            direction *= -1;
+            i += direction * 2;
+        }
+    }
+
+    setInterval(knightRider, 150);
+</script>
+
+</body>
+</html>
